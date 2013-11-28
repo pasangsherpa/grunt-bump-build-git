@@ -88,7 +88,8 @@ module.exports = function (grunt) {
         },
 
         add: function () {
-            this.exec('git add --all');
+            var params = this.task.args[1] || '--all';
+            this.exec('git add ' + params);
         },
 
         commit: function () {

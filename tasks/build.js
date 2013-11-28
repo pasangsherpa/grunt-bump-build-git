@@ -17,10 +17,13 @@ module.exports = function (grunt) {
         'Bump the version, build the project and add, commit and tag in git in one step.',
         function (version, message) {
             var tasks = ['bump:' + (version || '')].concat(
-                grunt.config('build.tasks') || ['default']
-            );
+                    grunt.config('build.tasks') || ['default']
+                ),
+                gitAdd = grunt.config('build.gitAdd');
             if (message) {
-                tasks.push('git:add');
+                if (gitAdd !== false) {
+                    tasks.push('git:add' + (gitAdd ? ':' + gitAdd : ''));
+                }
                 tasks.push('git:commit:' + message);
                 if (version) {
                     tasks.push('git:tag:' + message);

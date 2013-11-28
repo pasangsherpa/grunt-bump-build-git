@@ -77,7 +77,7 @@ module.exports = function (grunt) {
 
         // Configuration to be run (and then tested).
         build: {
-            tasks: ['custom'],
+            tasks: ['writeVersion'],
             packages: 'tmp/*.json'
         },
 
@@ -88,10 +88,20 @@ module.exports = function (grunt) {
 
     });
 
-    // Register custom task to test the package config version update
+    // Register a custom task to test the package config version update
     // and build tasks setting:
-    grunt.registerTask('custom', function () {
+    grunt.registerTask('writeVersion', function () {
         grunt.file.write('tmp/version.txt', grunt.config('pkg.version'));
+    });
+
+    // Register a custom task to set the build.gitAdd config option:
+    grunt.registerTask('gitAddConfigCustom', function () {
+        grunt.config('build.gitAdd', 'tmp/\\*');
+    });
+
+    // Register a custom task to disable the build.gitAdd task:
+    grunt.registerTask('gitAddConfigFalse', function () {
+        grunt.config('build.gitAdd', false);
     });
 
     // Actually load this plugin's task(s).
@@ -103,7 +113,7 @@ module.exports = function (grunt) {
         if (grunt.file.exists('tmp/git/calls.json')) {
             git = grunt.file.readJSON('tmp/git/calls.json');
         }
-        git[this.nameArgs] = true;
+        git[this.nameArgs] = (git[this.nameArgs] || 0) + 1;
         grunt.file.write('tmp/git/calls.json', JSON.stringify(git));
     });
 
@@ -131,7 +141,10 @@ module.exports = function (grunt) {
         'build:3.4.5-rc.6+test.7',
         'copy:version',
         'build:major:test',
-        'build::notag', // This also updates the meta build version
+        'gitAddConfigCustom',
+        'build::notag',
+        'gitAddConfigFalse',
+        'build::notag',
         'nodeunit'
     ]);
 

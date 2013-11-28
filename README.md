@@ -55,7 +55,8 @@ grunt.initConfig({
     packageConfig: 'pkg',
     packages: '*.json',
     jsonSpace: 2,
-    jsonReplacer: undefined
+    jsonReplacer: undefined,
+    gitAdd: '--all'
   },
 })
 ```
@@ -152,9 +153,17 @@ Default value: `undefined`
 
 The `replacer` parameter to [JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) used to render the JSON package files.
 
+#### build.gitAdd
+Type: `String|Boolean`  
+Default value: `'--all'`
+
+The shell parameters passed to [git add](https://www.kernel.org/pub/software/scm/git/docs/git-add.html).  
+Set to `false` to disable calling `git add` on build runs.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
 
+ * 2013-11-28   v1.1.0   Added `gitAdd` build option.
  * 2013-10-29   v1.0.0   Initial release.

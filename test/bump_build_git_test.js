@@ -158,13 +158,14 @@
         },
 
         git: function (test) {
-            test.expect(6);
             var actual = grunt.file.readJSON('tmp/git/calls.json');
             test.ok(actual);
-            test.ok(actual['git:add'], 'Should run git:add.');
-            test.ok(actual['git:commit:test'], 'Should run git:commit:test.');
-            test.ok(actual['git:commit:notag'], 'Should run git:commit:notag.');
-            test.ok(actual['git:tag:test'], 'Should run git:tag:test.');
+            test.equal(actual['git:add'], 1, 'Should run git:add once.');
+            test.equal(actual['git:commit:test'], 1, 'Should run git:commit:test once.');
+            test.equal(actual['git:tag:test'], 1, 'Should run git:tag:test once.');
+            test.equal(actual['git:add:tmp/\\*'], 1, 'Should run git:add:tmp/\\* once.');
+            test.equal(actual['git:commit:notag'], 2, 'Should run git:commit:notag twice.');
+            test.ok(!actual['git:add:undefined'], 'Should not run git:add:undefined.');
             test.ok(!actual['git:tag:notag'], 'Should not run git:tag:notag.');
             test.done();
         }
