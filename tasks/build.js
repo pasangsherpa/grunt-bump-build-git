@@ -21,6 +21,7 @@ module.exports = function (grunt) {
                 ),
                 gitAdd = grunt.config('build.gitAdd');
             if (message) {
+                message = message.replace(':', '\\:');
                 if (gitAdd !== false) {
                     tasks.push('git:add' + (gitAdd ? ':' + gitAdd : ''));
                 }

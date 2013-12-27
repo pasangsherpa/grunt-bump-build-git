@@ -22,7 +22,7 @@
 - [Release History](#release-history)
 
 ## Getting Started
-This plugin requires Grunt `~0.4.1`
+This plugin requires Grunt `~0.4.2`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -121,6 +121,14 @@ To build and commit a test version without creating a tag, run the following com
 grunt build::"Test build"
 ```
 
+**Colons in commit messages:**
+
+If you want to use colons in commit messages, escape them with a backslash:
+
+```sh
+grunt build:minor:"Set visibility\:true by default."
+```
+
 ### Options
 
 #### build.tasks
@@ -165,5 +173,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+ * 2013-12-27   v1.1.1   Escape colons in git commit messages.
  * 2013-11-28   v1.1.0   Added `gitAdd` build option.
  * 2013-10-29   v1.0.0   Initial release.
