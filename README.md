@@ -39,7 +39,7 @@ grunt.loadNpmTasks('grunt-bump-build-git');
 ## The build task
 
 ### Overview
-This task allows you to bump your project version, update all available package files (`package.json`, `bower.json`, etc.), build the project with your custom tasks and the updated package confg version and add, commit and tag the new release in git - all in one step.
+This task allows you to bump your project version, update all available package files (`package.json`, `bower.json`, etc.), build the project with your custom tasks and the updated package config version and add, commit and tag the new release in git - all in one step.
 
 ### Usage Examples
 
