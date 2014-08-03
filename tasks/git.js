@@ -96,6 +96,8 @@ module.exports = function (grunt) {
             var message = this.task.args[1];
             if (!message) {
                 return grunt.fail.warn('Missing Git commit message.');
+            } else if (message === "default") {
+                message = "Release v"+ grunt.config([this.options.packageConfig, 'version']);
             }
             this.exec('git commit -m ' + this.escape(message));
         },

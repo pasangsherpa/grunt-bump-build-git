@@ -128,6 +128,13 @@ If you want to use colons in commit messages, escape them with a backslash:
 ```sh
 grunt build:minor:"Set visibility\:true by default."
 ```
+**Auto version commit message "Release v[pkg.version]":**
+
+If you want to use only the version number in commit message: eg: "Release v1.0.0"
+
+```sh
+grunt build:patch:auto-version
+```
 
 ### Options
 
