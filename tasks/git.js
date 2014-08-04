@@ -109,7 +109,7 @@ module.exports = function (grunt) {
                 return grunt.fail.warn('Missing package version.');
             }
             this.exec(
-                'git tag -a ' + this.escape(version) +
+                'git tag -a v' + this.escape(version) +
                     (message ? ' -m ' + this.escape(message) : '')
             );
         }
